@@ -6,6 +6,8 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import CheckoutPage from './pages/CheckoutPage';
+import ContactPage from './pages/ContactPage';
+import BlogPage from './pages/BlogPage';
 
 export default function App() {
   return (
@@ -19,6 +21,8 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/products" element={<ProductsPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/blog" element={<BlogPage />} />
             </Routes>
           </main>
           <Footer />

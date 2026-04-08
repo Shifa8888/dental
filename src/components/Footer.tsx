@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -33,27 +33,19 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2.5">
-              {['Home', 'Products', 'About Us', 'Contact', 'Blog'].map(item => (
-                <li key={item}>
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'Products', path: '/products' },
+                // { name: 'About Us', path: '/about' },
+                { name: 'Contact', path: '/contact' },
+                { name: 'Latest Blog', path: '/blog' }
+              ].map(item => (
+                <li key={item.name}>
                   <Link
-                    to={item === 'Home' ? '/' : item === 'Products' ? '/products' : '/'}
+                    to={item.path}
                     className="text-sm text-amber-200/50 hover:text-amber-300 transition-colors"
                   >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Categories */}
-          <div>
-            <h4 className="text-white font-semibold mb-4">Categories</h4>
-            <ul className="space-y-2.5">
-              {['Diagnostic Instruments', 'Surgical Tools', 'Restorative Materials', 'Orthodontic Supplies', 'Infection Control'].map(item => (
-                <li key={item}>
-                  <Link to="/products" className="text-sm text-amber-200/50 hover:text-amber-300 transition-colors">
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -78,21 +70,44 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-        </div>
 
-        <div className="border-t border-amber-800/50 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-amber-200/40">
-            © 2026 BuyDental. All rights reserved.
-          </p>
-          <div className="flex items-center gap-6">
-            {['Privacy Policy', 'Terms of Service', 'Shipping Policy'].map(item => (
-              <button key={item} className="text-xs text-amber-200/40 hover:text-amber-300 transition-colors">
-                {item}
+          {/* Newsletter (New Section to fill space) */}
+          <div>
+            <h4 className="text-white font-semibold mb-4">Stay Updated</h4>
+            <p className="text-sm text-amber-200/50 mb-4">
+              Subscribe to get special offers and dental industry news.
+            </p>
+            <form className="relative">
+              <input 
+                type="email" 
+                placeholder="Email address"
+                className="w-full bg-amber-900/30 border border-amber-800/50 rounded-lg py-2 px-3 text-sm text-white placeholder:text-amber-200/20 focus:outline-none focus:border-amber-500 transition-colors"
+              />
+              <button 
+                type="submit"
+                className="absolute right-1 top-1 bottom-1 px-3 bg-amber-600 hover:bg-amber-500 text-white rounded-md transition-colors"
+              >
+                <Send className="w-3.5 h-3.5" />
               </button>
-            ))}
+            </form>
           </div>
         </div>
-      </div>
+
+<div className="border-t border-amber-800/50 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+  <div className="flex flex-col gap-1">
+    <p className="text-sm text-amber-200/40">
+      © 2026 BuyDental. All rights reserved.
+    </p>
+  </div>
+  
+  <div className="flex items-center gap-6">
+    {['Privacy Policy', 'Terms of Service', 'Shipping Policy'].map(item => (
+      <button key={item} className="text-xs text-amber-200/40 hover:text-amber-300 transition-colors">
+        {item}
+      </button>
+    ))}
+  </div>
+</div>      </div>
     </footer>
   );
 }

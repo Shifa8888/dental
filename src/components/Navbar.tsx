@@ -24,6 +24,8 @@ export default function Navbar() {
     { to: '/', label: 'Home' },
     { to: '/products', label: 'Products' },
     { to: '/checkout', label: 'Checkout' },
+        { to: '/contact', label: 'Contact' },
+
   ];
 
   return (

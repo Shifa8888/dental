@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   Search, SlidersHorizontal, X, ChevronDown, Grid3X3, LayoutList, Star, Eye, ShoppingCart,
 } from 'lucide-react';
@@ -20,6 +21,7 @@ const sortOptions = [
 ];
 
 export default function ProductsPage() {
+  const [searchParams] = useSearchParams();
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null);
   const [search, setSearch] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -36,6 +38,14 @@ export default function ProductsPage() {
     price: true,
     rating: false,
   });
+
+  // Read category from URL parameter
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam && !selectedCategories.includes(categoryParam)) {
+      setSelectedCategories([categoryParam]);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -307,8 +317,23 @@ export default function ProductsPage() {
       {/* Page Header */}
       <div className="bg-gradient-to-r from-amber-700 to-amber-900 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">All Products</h1>
-          <p className="text-amber-200/80">Browse our complete collection of dental tools and supplies</p>
+          {selectedCategories.length > 0 ? (
+            <>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-amber-200/60 text-sm">Category:</span>
+                <span className="text-white text-sm font-medium bg-white/10 px-3 py-1 rounded-full">
+                  {selectedCategories.join(', ')}
+                </span>
+              </div>
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{selectedCategories[0]} Products</h1>
+              <p className="text-amber-200/80">Showing all products in the {selectedCategories[0]} category</p>
+            </>
+          ) : (
+            <>
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">All Products</h1>
+              <p className="text-amber-200/80">Browse our complete collection of dental tools and supplies</p>
+            </>
+          )}
         </div>
       </div>
 
