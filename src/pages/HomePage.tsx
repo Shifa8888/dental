@@ -129,9 +129,12 @@ export default function HomePage() {
                   Shop Now
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <button className="px-8 py-3.5 border border-amber-400/30 text-amber-300 rounded-xl font-semibold hover:bg-amber-500/10 transition-all">
+                <Link
+                  to="/products"
+                  className="px-8 py-3.5 border border-amber-400/30 text-amber-300 rounded-xl font-semibold hover:bg-amber-500/10 transition-all"
+                >
                   View Catalog
-                </button>
+                </Link>
               </div>
 
               <div className="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-amber-700/30">
